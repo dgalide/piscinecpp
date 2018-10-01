@@ -4,10 +4,10 @@
 
 void addContact(Contact list[8]) {
 
-	if (list[0].objectCount == list[0].maximumCount) {
+	if (list[0].getObjectCount() == list[0].getMaximumCount()) {
 		std::cout << "Maximum Number Of Contact Reached" << std::endl;
 	} else {
-		for (int i = 0; i < list[0].maximumCount; i++) {
+		for (int i = 0; i < list[0].getMaximumCount(); i++) {
 			if (list[i].isUsed() == false) {
 				list[i].init();
 				break;
@@ -20,7 +20,7 @@ bool search(Contact list[8]) {
 
 	int leastOne = false;
 
-	for (int i = 0; i < list[0].maximumCount; i++) {
+	for (int i = 0; i < list[0].getMaximumCount(); i++) {
 		if (list[i].isUsed()) {
 			leastOne = true;
 		}
@@ -30,7 +30,7 @@ bool search(Contact list[8]) {
 		list[0].printHeader();
 	}
 
-	for (int i = 0; i < list[0].maximumCount; i++) {
+	for (int i = 0; i < list[0].getMaximumCount(); i++) {
 		if (list[i].isUsed()) {
 			list[i].showBasicInfo(i);
 		}

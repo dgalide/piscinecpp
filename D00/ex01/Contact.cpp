@@ -8,7 +8,7 @@ int Contact::objectCount = 0;
 int Contact::maximumCount = 8;
 
 // Constructor
-Contact::Contact(void): used(false) {}
+Contact::Contact(void): used(false) { }
 
 // Destructor
 Contact::~Contact(void) {}
@@ -19,6 +19,10 @@ bool 	Contact::isUsed(void) {
 
 int 	Contact::getObjectCount(void) {
 	return objectCount;
+}
+
+int 	Contact::getMaximumCount(void) {
+	return maximumCount;
 }
 
 void	Contact::printHeader(void) {
@@ -45,6 +49,7 @@ void 	Contact::showBasicInfo(int index) {
 }
 
 void	Contact::init(void) {
+	std::cout << objectCount << std::endl;
 	std::cout << "Enter A First Name " << std::endl;
 	std::getline (std::cin, firstName);
 	std::cout << "Enter A Last Name " << std::endl;

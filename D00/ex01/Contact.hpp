@@ -5,22 +5,24 @@
 
 class Contact
 {
+	private :
+	static int objectCount;
+	static int maximumCount;
+
 	public :
 
 	Contact();
 	~Contact();
 
-	static int objectCount;
-	static int maximumCount;
-
 	bool isUsed(void);
 	void init(void);
 	void show(void);
-	int  getObjectCount(void);
 	void showBasicInfo(int index);
 	void printHeader(void);
 	void showFullInfo(void);
 	void showTruncate(std::string str);
+	int  getObjectCount(void);
+	int  getMaximumCount(void);
 
 	bool used;
 	std::string firstName;
