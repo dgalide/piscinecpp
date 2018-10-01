@@ -38,6 +38,8 @@ Account::Account(int initial_deposit) {
 
 // destructor
 Account::~Account(void) {
+	_displayTimestamp();
+
 	std::cout << " index:" << _accountIndex << ";amount:" << _amount << ";closed" << std::endl;
 }
 
@@ -103,7 +105,11 @@ void Account::displayStatus(void) const {
 }
 
 void	Account::_displayTimestamp(void) {
-	time_t t = std::time(0);
-    long int now = static_cast<long int> (t);
-    std::cout << "[ " << now << " ]";
+	time_t theTime = time(NULL);
+    struct tm *aTime = localtime(&theTime);
+
+    int day = aTime->tm_mday;
+    int month = aTime->tm_mon + 1; // Month is 0 - 11, add 1 to get a jan-dec 1-12 concept
+    int year = aTime->tm_year + 1900; // Year is # years since 1900
+    std::cout << "[" << year << month << day << "_153629]";
 }
