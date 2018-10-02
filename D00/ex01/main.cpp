@@ -76,6 +76,9 @@ int main (void) {
 	{
 		std::cout << "Enter a command -> Allowed command : ADD, SEARCH, EXIT" << std::endl;
 		std::getline (std::cin, command);
+		if (std::cin.eof()==1) {
+			break;
+		}
 		if (command == "ADD") {
 			addContact(list);
 		} else if (command == "EXIT") {
@@ -84,6 +87,9 @@ int main (void) {
 			if (search(list)) {
 				std::cout << "Enter the wanted index" << std::endl;
 				std::getline (std::cin, index);
+				if (std::cin.eof()==1) {
+					break;
+				}
 				if (isInteger(index)) {
 					int i_index = std::stoi(index);
 					show(list, i_index);
