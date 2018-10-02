@@ -22,4 +22,3 @@ Zombie 	*ZombieEvent::randomChump(void) {
     Zombie *z = this->newZombie(names[index]);
     return (z);
 }
-
