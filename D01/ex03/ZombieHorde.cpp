@@ -16,6 +16,11 @@ ZombieHorde::ZombieHorde(int n) {
 }
 
 ZombieHorde::~ZombieHorde(void) {
+	for (int i = 0; i < nbZombie; i++) {
+		Zombie *z = listZombie->at(i);
+		delete z;
+	}
+
 	delete listZombie;
 }
 
