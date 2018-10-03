@@ -24,7 +24,9 @@ Fixed& Fixed::operator=(const Fixed&ref) {
 }
 
 // Destructor
-Fixed::~Fixed(void) {}
+Fixed::~Fixed(void) {
+    std::cout << "Destructor called" << std::endl;
+}
 
 void        Fixed::setRawBits(int const raw) {
     std::cout << "setRawBits member function called" << std::endl;
