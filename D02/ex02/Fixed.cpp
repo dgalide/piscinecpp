@@ -111,6 +111,7 @@ Fixed   Fixed::operator*(Fixed const &ref) {
 Fixed   Fixed::operator/(Fixed const &ref) {
     Fixed f;
     f.setRawBits((this->value - ref.getRawBits()));
+    f.value = f.toFloat();
 
     return f;
 }
