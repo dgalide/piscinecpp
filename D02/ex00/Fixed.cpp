@@ -13,11 +13,11 @@ Fixed::Fixed(Fixed const &ref): value(ref.value) {
 }
 
 // assignation operator overload '='
-Fixed& Fixed::operator=(const Fixed&ref) {
+Fixed& Fixed::operator=(Fixed const &ref) {
     if (this != &ref) {
         std::cout << "Assignation operator called" << std::endl;
 
-        this->value = ref.value;
+        this->value = ref.getRawBits();
     }
 
     return *this;
@@ -33,7 +33,7 @@ void        Fixed::setRawBits(int const raw) {
     this->value = raw;
 }
 
-int         Fixed::getRawBits(void) {
+int         Fixed::getRawBits(void) const {
     std::cout << "getRawBits member function called" << std::endl;
     return this->value;
 }
