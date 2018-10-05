@@ -22,12 +22,19 @@ std::cout << (aa <= Fixed(17.4f)) << std::endl;
 std::cout << (aa <= Fixed(17.6f)) << std::endl;
 aa++;
 
-// std::cout << a << std::endl;
-// std::cout << ++a << std::endl;
-// std::cout << a << std::endl;
-// std::cout << a++ << std::endl;
-// std::cout << a << std::endl;
-// std::cout << b << std::endl;
+aa = Fixed(10.1f);
+bb = Fixed(0);
+
+Fixed c = aa / bb;
+
+std::cout << c << std::endl;
+
+std::cout << a << std::endl;
+std::cout << ++a << std::endl;
+std::cout << a << std::endl;
+std::cout << a++ << std::endl;
+std::cout << a << std::endl;
+std::cout << b << std::endl;
 
 std::cout << Fixed::max( a, b ) << std::endl;
 return 0;
