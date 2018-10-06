@@ -3,6 +3,7 @@ NAME = ft_retro
 SRC = main.cpp
 SRC += Logger.cpp
 SRC += Input.cpp
+SRC += Screen.cpp
 
 CLANG_FLAGS = -Wall -Wextra -Werror
 

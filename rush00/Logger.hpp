@@ -11,6 +11,7 @@ public:
 	~Logger(void);
 
 	void 			log(std::string const & dest, std::string const & message);
+	void 			log(std::string const & dest, std::string const & message, int value);
 
 	std::string		getFilename(void) const;
 	void			setFilename(std::string name);

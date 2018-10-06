@@ -10,6 +10,10 @@
 
 #include "Logger.hpp"
 #include "Input.hpp"
+#include "Screen.hpp"
+
+#define HEIGHT 500
+#define WIDTH 100
 
 
  int main(void);

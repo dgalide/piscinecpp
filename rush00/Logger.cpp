@@ -84,6 +84,25 @@ void				Logger::log(std::string const & dest, std::string const & message) {
 	};
 }
 
+void				Logger::log(std::string const & dest, std::string const & message, int value) {
+
+	std::stringstream	ss;
+
+	ss << message;
+	ss << std::to_string(value);
+
+	if (!dest.empty() && !message.empty()) {
+		t_loggerFunctions	logFuncs[2] = {&Logger::logToConsole, &Logger::logToFile};
+		std::string			funcName[2] = {CONSOLE, FILE};
+
+		for (int i = 0; i < 2; i++) {
+			if (dest == funcName[i]) {
+				(*this.*logFuncs[i])(ss.str());
+			}
+		}
+	};
+}
+
 void				Logger::logToConsole(std::string logEntry) {
 	std::cout << this->makeLogEntry(logEntry);
 }
