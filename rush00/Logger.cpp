@@ -58,6 +58,10 @@ std::string			Logger::makeKeyLog(int keyValue) {
 			ptr = new std::string("Key Right");
 			break;
 		}
+		case 27 : {
+			ptr = new std::string("Escape");
+			break;
+		}
 		default: ptr = new std::string(std::to_string(keyValue));
 	};
 

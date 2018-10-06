@@ -9,6 +9,7 @@ int main(void) {
 
     clear();
 	noecho();
+    notimeout(w, true);
 	cbreak();
     keypad(w, TRUE);
 
