@@ -2,6 +2,9 @@
  #define BUREAUCRAT_HPP
 
 #include <iostream>
+#include "Form.hpp"
+
+class Form;
 
 #define MIN_GRADE 150
 #define MAX_GRADE 1
@@ -43,13 +46,14 @@
         int                    getGrade(void) const;
         std::string            getName(void) const;
 
-        private:
+        /**
+        * Method
+        */
+        void                    increment(int const value);
+        void                    decrement(int const value);
+        void                    signForm(Form &ref);
 
-            /**
-             * Method
-             */
-            void                    increment(int const value);
-            void                    decrement(int const value);
+        private:
 
             /**
              * Property

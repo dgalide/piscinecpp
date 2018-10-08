@@ -68,6 +68,15 @@ void                Bureaucrat::decrement(int const value) {
     }
 }
 
+void                Bureaucrat::signForm(Form &ref) {
+    try {
+        ref.beSigned(*this);
+        std::cout << this->getName() << " signs " << ref.getName() << std::endl;
+    } catch (Form::GradeTooLowException e) {
+        std::cout << this->getName() << " cannot sign " << ref.getName() << " for reason: " << e.what() << std::endl;
+    }
+}
+
 /**
  * Stream operator
  */
