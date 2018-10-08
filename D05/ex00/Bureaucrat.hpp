@@ -8,30 +8,21 @@
 
  class Bureaucrat {
 
-    class GradeTooLowException : public std::exception {
-
-        public:
-            GradeTooLowException(void);
-            GradeTooLowException(const GradeTooLowException &ref);
-
-            virtual ~GradeTooLowException(void) throw();
-
-            virtual const char    *what() const throw();
-
-    };
-
-    class GradeTooHighException : public std::exception {
-
-        public:
-            GradeTooHighException(void);
-            GradeTooHighException(const GradeTooHighException &ref);
-
-            virtual ~GradeTooHighException(void) throw();
-
-            virtual const char    *what() const throw();
-    };
-
      public:
+
+        /**
+         * Exceptions
+         */
+        class GradeTooHighException: public std::exception {
+        
+            public:
+                virtual const char* what() const throw();
+         };
+
+        class GradeTooLowException: public std::exception {
+            public:
+                virtual const char* what() const throw();
+        };
 
         /**
          * Constructor/Destructor
@@ -41,10 +32,10 @@
         ~Bureaucrat(void);
 
         /**
-         * Property
+         * Overload
          */
-        std::string const   name;
-        int                 grade;
+        void			operator+=(int const value);
+        void			operator-=(int const value);
 
         /**
          * Getters
@@ -52,14 +43,23 @@
         int                    getGrade(void) const;
         std::string            getName(void) const;
 
-        /**
-         * Method
-         */
-        void                    increment(void);
-        void                    decrement(void);
+        private:
+
+            /**
+             * Method
+             */
+            void                    increment(int const value);
+            void                    decrement(int const value);
+
+            /**
+             * Property
+             */
+            std::string const   name;
+            int                 grade;
 
     private:
 
+        // Avoid default constructor
         Bureaucrat(void);
         
  };

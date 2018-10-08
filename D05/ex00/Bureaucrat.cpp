@@ -1,37 +1,39 @@
 #include "Bureaucrat.hpp"
 
+/**
+ * Constructor / Destructor
+ */
 Bureaucrat::Bureaucrat(std::string name): name(name), grade(MIN_GRADE) {}
 
 Bureaucrat::~Bureaucrat(void) {}
 
 Bureaucrat::Bureaucrat(Bureaucrat &ref): name(ref.getName()), grade(MIN_GRADE) {}
 
-Bureaucrat::GradeTooLowException::GradeTooLowException(void) {}
-
-Bureaucrat::GradeTooLowException::~GradeTooLowException(void) throw() {}
-
-Bureaucrat::GradeTooLowException::GradeTooLowException(const Bureaucrat::GradeTooLowException &ref) {
-    *this = ref;
+/**
+ * Operator Overload
+ */
+void            Bureaucrat::operator-=(int const value) {
+    this->decrement(value);
 }
 
-Bureaucrat::GradeTooHighException::GradeTooHighException(void) {}
-
-Bureaucrat::GradeTooHighException::~GradeTooHighException(void) throw() {}
-
-Bureaucrat::GradeTooHighException::GradeTooHighException(const Bureaucrat::GradeTooHighException &ref) {
-    *this = ref;
+void            Bureaucrat::operator+=(int const value) {
+    this->increment(value);
 }
 
-const char          *Bureaucrat::GradeTooLowException::what() const throw()
-{
-    return ("Grade is at min already...");
+/**
+ * Exceptions
+ */
+const char      *Bureaucrat::GradeTooHighException::what() const throw() {
+    return ("Grade To High ..");
 }
 
-const char          *Bureaucrat::GradeTooHighException::what() const throw()
-{
-    return ("Grade is at max already...");
+const char      *Bureaucrat::GradeTooLowException::what() const throw() {
+    return ("Grade To Low ..");
 }
 
+/**
+ * Getters
+ */
 int                 Bureaucrat::getGrade(void) const {
     return this->grade;
 }
@@ -40,22 +42,28 @@ std::string         Bureaucrat::getName(void) const {
     return this->name;
 }
 
-void                Bureaucrat::increment(void) {
-    if (this->getGrade() == MAX_GRADE) {
-        throw Bureaucrat::GradeTooHighException();
+/**
+ * Method
+ */
+void                Bureaucrat::increment(int const value) {
+    if (this->getGrade() - value <= MAX_GRADE) {
+        throw Bureaucrat::GradeTooHighException();       
     } else {
         this->grade--;
     }
 }
 
-void                Bureaucrat::decrement(void) {
-    if (this->getGrade() == MIN_GRADE) {
+void                Bureaucrat::decrement(int const value) {
+    if (this->getGrade() + value >= MIN_GRADE) {
         throw Bureaucrat::GradeTooLowException();
     } else {
         this->grade++;
     }
 }
 
+/**
+ * Stream operator
+ */
 std::ostream        &operator<<(std::ostream &stream, Bureaucrat &ref) {
     stream << ref.getName() << ", bureaucrat grade " << ref.getGrade() << std::endl;
     return stream;
