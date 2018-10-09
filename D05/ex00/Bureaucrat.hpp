@@ -16,12 +16,21 @@
         class GradeTooHighException: public std::exception {
         
             public:
+                GradeTooHighException(void);
+                GradeTooHighException(GradeTooHighException const &ref);
+                GradeTooHighException &operator=(GradeTooHighException const &ref);
+                virtual ~GradeTooHighException(void) throw();
                 virtual const char* what() const throw();
          };
 
         class GradeTooLowException: public std::exception {
             public:
+                GradeTooLowException(void);
+                GradeTooLowException(GradeTooLowException const &ref);
+                GradeTooLowException &operator=(GradeTooLowException const &e);
+                virtual ~GradeTooLowException(void) throw();
                 virtual const char* what() const throw();
+                
         };
 
         /**

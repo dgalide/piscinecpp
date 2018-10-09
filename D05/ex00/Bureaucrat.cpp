@@ -30,12 +30,34 @@ void            Bureaucrat::operator+=(int const value) {
 /**
  * Exceptions
  */
-const char      *Bureaucrat::GradeTooHighException::what() const throw() {
-    return ("Grade To High ..");
+Bureaucrat::GradeTooHighException::~GradeTooHighException(void) throw() {}
+Bureaucrat::GradeTooHighException::GradeTooHighException(void) {}
+Bureaucrat::GradeTooHighException::GradeTooHighException(GradeTooHighException const &e) {
+    (void)e;
 }
 
-const char      *Bureaucrat::GradeTooLowException::what() const throw() {
-    return ("Grade To Low ..");
+Bureaucrat::GradeTooHighException &Bureaucrat::GradeTooHighException::operator=(GradeTooHighException const &e) {
+    (void)e;
+    return *this;
+}
+
+const char          *Bureaucrat::GradeTooHighException::what() const throw() {
+    return ("Grade Not Low Enough.");
+}
+
+Bureaucrat::GradeTooLowException::~GradeTooLowException(void) throw() {}
+Bureaucrat::GradeTooLowException::GradeTooLowException(void) {}
+Bureaucrat::GradeTooLowException::GradeTooLowException(GradeTooLowException const &e) {
+    (void)e;
+}
+
+Bureaucrat::GradeTooLowException &Bureaucrat::GradeTooLowException::operator=(GradeTooLowException const &e) {
+    (void)e;
+    return *this;
+}
+
+const char          *Bureaucrat::GradeTooLowException::what() const throw() {
+    return ("Grade Not High Enough.");
 }
 
 /**

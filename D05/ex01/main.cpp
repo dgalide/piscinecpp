@@ -9,12 +9,21 @@ int main(void)
     Bureaucrat bob("Bob", 1);
     Bureaucrat alice("alice", 150);
     Form        f1("form 1", 1, 10);
-    Form        f2("form 1", 150, 10);
 
-    alice.signForm(f2);
-    alice.signForm(f1);
-
-    bob.signForm(f1);
-    bob.signForm(f1);
+    try {
+        alice.signForm(f1);
+    } catch (Bureaucrat::GradeTooLowException e) {
+        std::cout << e.what() << std::endl;
+    } catch (std::exception e) {
+        std::cout << e.what() << std::endl;
+    }
+    
+    try {
+        bob.signForm(f1);
+    } catch (Bureaucrat::GradeTooLowException e) {
+        std::cout << e.what() << std::endl;
+    } catch (std::exception e) {
+        std::cout << e.what() << std::endl;
+    }
     return 0;
 }

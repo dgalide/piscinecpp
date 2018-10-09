@@ -3,11 +3,11 @@
 /**
  * Constructor / Destructor
  */
-Form::Form(std::string name, int signGrade, int const execGrade): name(name), isSigned(false), execGrade(execGrade), signGrade(signGrade) {
+Form::Form(std::string name, int signGrade, int const execGrade): name(name), isSigned(false), signGrade(signGrade), execGrade(execGrade) {
 
     if (signGrade < MAX_GRADE || execGrade < MAX_GRADE)
         throw Bureaucrat::GradeTooHighException();
-    else if (signGrade > MIN_GRADE || execGrade > MAX_GRADE)
+    else if (signGrade > MIN_GRADE || execGrade > MIN_GRADE)
         throw Bureaucrat::GradeTooLowException();
 }
 
@@ -36,12 +36,34 @@ bool                Form::getSigned(void) const {
 /**
  * Exceptions
  */
+Form::GradeTooHighException::~GradeTooHighException(void) throw() {}
+Form::GradeTooHighException::GradeTooHighException(void) {}
+Form::GradeTooHighException::GradeTooHighException(GradeTooHighException const &e) {
+    (void)e;
+}
+
+Form::GradeTooHighException &Form::GradeTooHighException::operator=(GradeTooHighException const &e) {
+    (void)e;
+    return *this;
+}
+
 const char          *Form::GradeTooHighException::what() const throw() {
-    return ("Grade Not High Enough ..");
+    return ("Grade Not Low Enough.");
+}
+
+Form::GradeTooLowException::~GradeTooLowException(void) throw() {}
+Form::GradeTooLowException::GradeTooLowException(void) {}
+Form::GradeTooLowException::GradeTooLowException(GradeTooLowException const &e) {
+    (void)e;
+}
+
+Form::GradeTooLowException &Form::GradeTooLowException::operator=(GradeTooLowException const &e) {
+    (void)e;
+    return *this;
 }
 
 const char          *Form::GradeTooLowException::what() const throw() {
-    return ("Grade Not Low Enough ..");
+    return ("Grade Not High Enough.");
 }
 
 /**
