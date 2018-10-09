@@ -12,7 +12,7 @@ class Bureaucrat;
 
 int main(void)
 {
-        Bureaucrat              *b[20];
+        Bureaucrat              *b[120];
         CentralBureaucracy      cb;
         std::string     names[20] = {"Misha Antonio",
                                         "Jonell Neidert",
@@ -52,16 +52,43 @@ int main(void)
 
         srand(time(nullptr));
 
-        for (int i = 0; i < 20;i++) {
-                b[i] = new Bureaucrat(names[i], 1);
-                cb.feedSome(b[i]);
+        for (int i = 0; i < 100;i++) {
+
+                b[i] = new Bureaucrat(names[rand() % 20], 1);
+
+                try {
+                        cb.feedSome(b[i]);
+                } catch (CentralBureaucracy::MaxBureaucrat e) {
+                        std::cout << e.what() << std::endl;
+                } 
         }
 
-        for (int j =0; j < 1080;j++) {
-                cb.queueUp("president", target[(rand() % 25)]);
+        for (int j =0; j < 1200;j++) {
+
+                try {
+                        cb.queueUp("president", target[(rand() % 25)]);
+                } catch (CentralBureaucracy::MaxQueue e) {
+                         std::cout << e.what() << std::endl;
+                }
         }
 
-        cb.doBureaucracy();
+        try {
+                cb.doBureaucracy();
+        } catch (CentralBureaucracy::MaxQueue e) {
+                std::cout << e.what() << std::endl;
+        } catch (CentralBureaucracy::MaxBureaucrat e) {
+                std::cout << e.what() << std::endl;
+        } catch (CentralBureaucracy::NoFullTeamToWork e) {
+                std::cout << e.what() << std::endl;
+        } catch (Form::GradeTooLowException e) {
+                std::cout << e.what() << std::endl;
+        } catch (Form::GradeTooHighException e) {
+                std::cout << e.what() << std::endl;
+        } catch (Form::alreadySignedException e) {
+                std::cout << e.what() << std::endl;
+        } catch (std::exception e) {
+                std::cout << e.what() << std::endl;
+        }
 
 
         return 0;

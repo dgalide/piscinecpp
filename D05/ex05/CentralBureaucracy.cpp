@@ -55,6 +55,7 @@ void          CentralBureaucracy::feedSome(Bureaucrat *b) {
 
 void            CentralBureaucracy::queueUp(std::string typeForm, std::string target) {
     t_task      *t = new t_task;
+    bool        added = false;
 
     t->target = target;
     t->typeform = typeForm;
@@ -62,9 +63,13 @@ void            CentralBureaucracy::queueUp(std::string typeForm, std::string ta
     for (int i = 0; i < MAX_QUEUE; i++) {
         if (!(this->queue[i])) {
             this->queue[i] = t;
+            added = true;
             break;
         }
     }
+
+    if (!added)
+        throw CentralBureaucracy::MaxQueue();
 }
 
 OfficeBlock     *CentralBureaucracy::getRandomOfficeBlock(void) {
