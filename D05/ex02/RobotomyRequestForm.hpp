@@ -17,7 +17,7 @@ class RobotomyRequestForm: public Form {
         RobotomyRequestForm(RobotomyRequestForm &ref);
         ~RobotomyRequestForm(void);
 
-        void                action(void);
+        virtual void                action(void);
 
     private:
 

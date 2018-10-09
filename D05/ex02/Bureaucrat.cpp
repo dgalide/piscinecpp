@@ -77,6 +77,15 @@ void                Bureaucrat::signForm(Form &ref) {
     }
 }
 
+void                Bureaucrat::executeForm(Form & form) {
+    try {
+        form.execute(*this);
+        std::cout << this->getName() << " execute " << form.getName() << std::endl;
+    } catch (Form::GradeTooLowException e) {
+        std::cout << this->getName() << " cannot execute " << form.getName() << " for reason: " << e.what() << std::endl;
+    }
+}
+
 /**
  * Stream operator
  */

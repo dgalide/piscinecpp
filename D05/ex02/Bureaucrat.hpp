@@ -52,6 +52,7 @@ class Form;
         void                    increment(int const value);
         void                    decrement(int const value);
         void                    signForm(Form &ref);
+        void                    executeForm(Form & form);
 
         private:
 

@@ -15,7 +15,7 @@ class ShrubberyCreationForm: public Form {
         ShrubberyCreationForm(ShrubberyCreationForm &ref);
         ~ShrubberyCreationForm(void);
 
-        void                action(void);
+        virtual void                action(void);
 
     private:
 
